@@ -38,7 +38,7 @@ before_install:
     - sudo add-apt-repository ppa:ximion/packagekit -y
     - sudo apt-get update -qq
     - wget http://download.qt.io/archive/qt/4.8/4.8.4/qt-everywhere-opensource-src-4.8.4.tar.gz
-    - tar xfvz qt-everywhere-opensource-src-4.8.4.tar.gz
+    - tar xzf qt-everywhere-opensource-src-4.8.4.tar.gz
 
 install:
       #- if [ "$QT_BASE" = "48" ] ; then sudo apt-get install -qq qt4-qmake libqt4-gui libqt4-core libqt4-dev ; fi
@@ -52,7 +52,7 @@ install:
       #- if [ "$QT_BASE" = "57" ] ; then sudo apt-get install -qq qt57base qt57xmlpatterns qt57svg; source /opt/qt57/bin/qt57-env.sh ; fi
       #- if [ "$QT_BASE" = "58" ] ; then sudo apt-get install -qq qt58base qt58xmlpatterns qt58svg; source /opt/qt58/bin/qt58-env.sh ; fi
       #- if [ "$QT_BASE" = "59" ] ; then sudo apt-get install -qq qt59base qt59xmlpatterns qt59svg; source /opt/qt59/bin/qt59-env.sh ; fi
-    - sudo apt-get -y install appstream
+    - sudo apt-get -y install appstream libdbus-1-dev
 
 before_script:
     #- if [ "$QT_BASE" == "48" ] ; then mkdir build && cd build && CXX=g++-5 CC=gcc-5 cmake -DQT_VERSION=Qt4 .. ; fi
@@ -60,7 +60,7 @@ before_script:
 
 script:
     - cd qt-everywhere-opensource-src-4.8.4
-    - ./configure  -fast -opensource -release -no-qt3support -fontconfig -dbus -sm -qt-libpng -qt-libjpeg -qt-libmng -qt-zlib -openssl -opengl desktop -xrender -webkit -confirm-license
+    - ./configure -v -fast -opensource -release -no-qt3support -fontconfig -dbus -sm -qt-libpng -qt-libjpeg -qt-libmng -qt-zlib -openssl -opengl desktop -xrender -webkit -confirm-license -continue
     - make
     - export PATH=$(pwd)/bin:$PATH
     - echo $PATH

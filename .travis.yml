@@ -59,12 +59,15 @@ before_script:
     #- if [ "$QT_BASE" != "48" ] ; then mkdir build && cd build && CXX=g++-5 CC=gcc-5 cmake -DQT_VERSION=Qt5 .. ; fi
 
 script:
+      # Qt building
     - cd qt-everywhere-opensource-src-4.8.4
     - ./configure -v -fast -opensource -release -no-qt3support -fontconfig -dbus -sm -qt-libpng -qt-libjpeg -qt-libmng -qt-zlib -openssl -opengl desktop -xrender -webkit -confirm-license -continue
     - make
-    - export PATH=$(pwd)/bin:$PATH
+    - make install
+    - export PATH=/usr/local/Trolltech/Qt-4.8.4:$(pwd)/bin:$PATH
     - echo $PATH
     - cd -
+      # QCAD building
     - qmake -r
     - make release
 

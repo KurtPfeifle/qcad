@@ -61,7 +61,7 @@ before_script:
 script:
       # Qt building
     - cd qt-everywhere-opensource-src-4.8.4
-    - ./configure -v -fast -opensource -release -no-qt3support -fontconfig -dbus -sm -qt-libpng -qt-libjpeg -qt-libmng -qt-zlib -openssl -opengl desktop -xrender -webkit -confirm-license -continue
+    - ./configure -fast -opensource -release -no-qt3support -fontconfig -dbus -sm -qt-libpng -qt-libjpeg -qt-libmng -qt-zlib -openssl -opengl desktop -xrender -webkit -confirm-license -continue
     - make -s
     - make install
     - export PATH=/usr/local/Trolltech/Qt-4.8.4:$(pwd)/bin:$PATH
